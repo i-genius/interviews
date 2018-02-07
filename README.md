@@ -311,6 +311,11 @@ or equal to those of the children and the lowest key is in the root node
                 y ^= x;
                 x ^= y;
              ```
+             
+> **Note:**
+> Using this XOR might actually be slower than the usual two value swap using a temp variable; the fact that you are writing through references suggests you are forcing the compiler to do 3 memory (ok, cache line) writes, whereas temp-style swamp should only do two memory write (any intelligent compiler will put the temp in the registers). Adding the conditional check surely makes it slower. So while this might be fun, it probably isn't a practical thing to do in a sort.
+
+
 
 ## Runtime Analysis
 
